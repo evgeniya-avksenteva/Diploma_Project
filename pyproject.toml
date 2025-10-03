@@ -13,6 +13,7 @@ pandas = "^2.3.3"
 psycopg2 = "^2.9.10"
 psycopg2-binary = "^2.9.10"
 django = "^5.2.7"
+pillow = "^11.3.0"
 
 
 [tool.poetry.group.lint.dependencies]
