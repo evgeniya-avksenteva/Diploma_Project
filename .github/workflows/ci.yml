@@ -96,22 +96,20 @@ jobs:
 
       - name: Create SSH key file
         run: |
-          cat > ~/.ssh/deploy_key << 'EOF'
-          ${{ secrets.SSH_KEY }}
-          EOF
+          mkdir -p ~/.ssh
+          printf "%s" "${{ secrets.SSH_KEY }}" > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
 
       - name: Test SSH connection
         run: |
-          ssh -v -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }} "echo 'SSH connection successful!'"
+          ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no "${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }}" "echo 'SSH connection successful!'"
 
       - name: Deploy to server
         run: |
-          ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }} "
+          ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no "${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }}" << 'SSH'
             # Выполняем деплой
             docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/myapp:${{ github.sha }}
             docker stop myapp || true
             docker rm myapp || true
             docker run -d --name myapp -p 80:80 ${{ secrets.DOCKER_HUB_USERNAME }}/myapp:${{ github.sha }}
             echo 'Deployment completed successfully!'
-          "
