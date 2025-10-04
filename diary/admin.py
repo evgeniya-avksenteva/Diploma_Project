@@ -21,7 +21,6 @@ class EntryAdmin(admin.ModelAdmin):
 class TagAdmin(admin.ModelAdmin):
     """
     Административный интерфейс для модели Tag.
-
     Настройки:
         list_display: Поля, отображаемые в списке тегов.
         search_fields: Поля для поиска тегов.
