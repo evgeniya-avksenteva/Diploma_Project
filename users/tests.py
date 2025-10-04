@@ -58,9 +58,7 @@ class CustomUserModelTest(TestCase):
 
     def test_create_user(self):
         """Тест создания обычного пользователя."""
-        user = User.objects.create_user(
-            email="user@example.com", password="testpass123"
-        )
+        user = User.objects.create_user(email="user@example.com", password="testpass123")
         self.assertEqual(user.email, "user@example.com")
         self.assertTrue(user.check_password("testpass123"))
         self.assertFalse(user.is_staff)
@@ -68,9 +66,7 @@ class CustomUserModelTest(TestCase):
 
     def test_create_superuser(self):
         """Тест создания суперпользователя."""
-        admin_user = User.objects.create_superuser(
-            email="admin@example.com", password="adminpass"
-        )
+        admin_user = User.objects.create_superuser(email="admin@example.com", password="adminpass")
         self.assertEqual(admin_user.email, "admin@example.com")
         self.assertTrue(admin_user.is_staff)
         self.assertTrue(admin_user.is_superuser)
@@ -87,9 +83,7 @@ class EmailConfirmationModelTest(TestCase):
 
     def setUp(self):
         """Настройка тестовых данных."""
-        self.user = User.objects.create_user(
-            email="user2@example.com", password="pass123"
-        )
+        self.user = User.objects.create_user(email="user2@example.com", password="pass123")
 
     def test_email_confirmation_creation(self):
         """Тест создания объекта подтверждения email."""
@@ -101,6 +95,7 @@ class EmailConfirmationModelTest(TestCase):
     def test_email_confirmation_str(self):
         """Тест строкового представления объекта подтверждения email."""
         confirmation = EmailConfirmation.objects.create(user=self.user)
+        self.assertTrue(str(confirmation))
 
 
 # Тесты для views.py
@@ -132,9 +127,7 @@ class UsersViewsTest(TestCase):
 
     def test_confirm_email_valid_token(self):
         """Тест подтверждения email с валидным токеном."""
-        user = User.objects.create_user(
-            email="testuser2@example.com", password="pass", is_active=False
-        )
+        user = User.objects.create_user(email="testuser2@example.com", password="pass", is_active=False)
         from users.models import EmailConfirmation
 
         confirmation = EmailConfirmation.objects.create(user=user)
@@ -150,15 +143,13 @@ class UsersViewsTest(TestCase):
 
     def test_confirm_email_invalid_token(self):
         """Тест подтверждения email с невалидным токеном."""
-        url = reverse(
-            "users:confirm_email", args=["00000000-0000-0000-0000-000000000000"]
-        )
+        url = reverse("users:confirm_email", args=["00000000-0000-0000-0000-000000000000"])
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "users/confirmation_invalid.html")
 
     def test_login_view_get(self):
-        """Тест GET-запроса к странице входа."""
+        """Tест GET-запроса к странице входа."""
         response = self.client.get(reverse("users:login"))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "users/login.html")
@@ -179,4 +170,3 @@ class UsersViewsTest(TestCase):
         self.client.login(email=user.email, password="pass")
         response = self.client.get(reverse("users:logout"))
         self.assertRedirects(response, reverse("users:login"))
-
