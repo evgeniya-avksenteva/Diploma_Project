@@ -320,6 +320,16 @@ argon2 = ["argon2-cffi (>=19.1.0)"]
 bcrypt = ["bcrypt"]
 
 [[package]]
+name = "django-redirect"
+version = "0.2"
+description = "A slightly more robust version of the native django redirect"
+optional = false
+python-versions = "*"
+files = [
+    {file = "django-redirect-0.2.tar.gz", hash = "sha256:749353bfdf5e388fc812fd0d2083e67915d4d775f0c2cbb6618d7850d8f3e008"},
+]
+
+[[package]]
 name = "flake8"
 version = "7.3.0"
 description = "the modular source code checker: pep8 pyflakes and co"
@@ -1125,4 +1135,4 @@ zstd = ["zstandard (>=0.18.0)"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.13"
-content-hash = "7284a5487195722b8c673afca685da5b284f96a657a050a3e72b558cb01f3eee"
+content-hash = "e78060f56016194ffad47cd68b174740533be1b79410af65609e2fa5628429c4"

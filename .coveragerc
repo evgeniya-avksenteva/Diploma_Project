@@ -1,0 +1,9 @@
+[run]
+omit =
+    config/asgi.py
+    config/wsgi.py
+    diary/migrations/*
+    users/migrations/*
+    diary/init.py
+    users/init.py
+    config/init.py
