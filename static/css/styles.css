@@ -1,0 +1,87 @@
+/* Цветовая палитра в пастельных тонах (зелёный/лаванда) */
+:root{
+  --bg-soft: #f2fbf2;      /* фон страницы — пастельно-зелёный */
+  --surface: #ffffff;       /* карточки и панели */
+  --primary: #8bd59e;        /* пастельно-зелёный */
+  --secondary: #c9a8f8;      /* пастельно-лавандовый */
+  --text: #1f2d37;            /* основной цвет текста */
+  --muted: #6b7280;
+  --card-shadow: 0 6px 18px rgba(0,0,0,.05);
+  --font-h: 'Kalam', cursive;   /* шрифт для заголовков (перо) */
+  --font-body: 'Kalam', cursive; /* шрифт для текста (перо) */
+}
+
+/* Подключение шрифта Kalam из Google Fonts
+   (можно оставить и через <link> в HTML; дублирование допустимо) */
+@import url('https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&display=swap');
+
+html, body {
+  height: 100%;
+}
+body {
+  background: var(--bg-soft);
+  color: var(--text);
+  font-family: var(--font-body);
+}
+
+/* Заголовки и основной контент используют шрифт «перо» */
+h1, h2, h3, h4, h5, h6, p, a, span, label, input, textarea, button {
+  font-family: var(--font-body);
+}
+
+/* Шапка и кнопки */
+.brand {
+  font-family: var(--font-h);
+  font-size: 1.25rem;
+  color: #2c2c2c;
+  text-decoration: none;
+}
+.btn-primary {
+  background-color: var(--primary);
+  border-color: var(--primary);
+  border-radius: 0.75rem;
+}
+.btn-secondary {
+  background-color: #e9f0f9;
+  border-color: #d6e6f9;
+  color: #1f2d3d;
+  border-radius: 0.75rem;
+}
+.btn-outline-primary {
+  color: #0d3b66;
+  border-color: #0d3b66;
+  border-radius: 0.75rem;
+}
+.btn-outline-danger {
+  color: #b00020;
+  border-color: #b00020;
+  border-radius: 0.75rem;
+}
+.card {
+  border-radius: 1rem;
+  box-shadow: var(--card-shadow);
+  border: 1px solid #eaeaea;
+  background: var(--surface);
+}
+.card .card-body {
+  padding: 1rem;
+}
+.list-group-item {
+  border: 1px solid #e9ecef;
+  border-radius: .75rem;
+  background-color: #fff;
+  margin-bottom: .5rem;
+  padding: .75rem;
+}
+.nav-link {
+  font-family: var(--font-body);
+}
+.bg-light {
+  background-color: #fdfdfd !important;
+}
+
+/* Общие отступы, чтобы контент не прилипал к краям */
+.container, .container-fluid {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}

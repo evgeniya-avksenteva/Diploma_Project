@@ -13,6 +13,8 @@ pandas = "^2.3.3"
 psycopg2 = "^2.9.10"
 psycopg2-binary = "^2.9.10"
 django = "^5.2.7"
+pillow = "^11.3.0"
+django-redirect = "^0.2"
 
 
 [tool.poetry.group.lint.dependencies]
@@ -24,6 +26,8 @@ isort = "^6.1.0"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.4.2"
+coverage = "^7.10.7"
+pytest-cov = "^7.0.0"
 
 [build-system]
 requires = ["poetry-core"]
